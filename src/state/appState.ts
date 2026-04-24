@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 
 import { fetchCatalogItems, fetchCatalogVersions, serverConfig } from '../api/client'
+import { resolveServerDisplayUrl } from '../config/runtime'
 import { executePrivateQuery } from '../query/privateQuery'
 import type { CatalogDetail, CatalogItem, CatalogVersion, QueryRun, QueryStage } from '../types'
 
@@ -97,12 +98,8 @@ export async function selectAndQuery(item: CatalogItem) {
 }
 
 export const appMeta = {
-  serverAUrl:
-    import.meta.env.VITE_PUBLIC_SERVER_A_URL ??
-    `http://${typeof window !== 'undefined' ? window.location.hostname : 'localhost'}:8081`,
-  serverBUrl:
-    import.meta.env.VITE_PUBLIC_SERVER_B_URL ??
-    `http://${typeof window !== 'undefined' ? window.location.hostname : 'localhost'}:8082`,
+  serverAUrl: resolveServerDisplayUrl('a'),
+  serverBUrl: resolveServerDisplayUrl('b'),
   proxiedServerAUrl: serverConfig.serverAUrl,
   proxiedServerBUrl: serverConfig.serverBUrl,
 }

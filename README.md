@@ -22,6 +22,17 @@ By default, frontend API requests use same-origin proxy paths:
 - `/server-a` -> `http://127.0.0.1:8081`
 - `/server-b` -> `http://127.0.0.1:8082`
 
+In production builds, when `VITE_SERVER_A_URL` and `VITE_SERVER_B_URL` are not set, the frontend automatically targets:
+
+- `http://<current-host>:18081`
+- `http://<current-host>:18082`
+
+The preview server now listens on port `15173`:
+
+```bash
+npm run preview -- --host 0.0.0.0 --port 15173
+```
+
 ## Environment
 
 Use the following variables when needed:

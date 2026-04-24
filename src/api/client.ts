@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 import type { CatalogItem, CatalogVersion, EvalRequest, EvalResponse } from '../types'
+import { resolveServerApiUrl } from '../config/runtime'
 
-const serverAUrl = import.meta.env.VITE_SERVER_A_URL ?? '/server-a'
-const serverBUrl = import.meta.env.VITE_SERVER_B_URL ?? '/server-b'
+const serverAUrl = resolveServerApiUrl('a')
+const serverBUrl = resolveServerApiUrl('b')
 
 const clientA = axios.create({
   baseURL: serverAUrl,
